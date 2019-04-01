@@ -70,9 +70,10 @@ def list_boxes(conn):
 			if has_match:
 				children = ''
 			if has_child:
-				children = 'Has Children'
+				#conn.select(folder)
+				children = '\n\tSub Folders Availble'
 			respone.append((folder, children))		
-	return respone
+	return sorted(respone)
 
 if __name__ == '__main__':
 	if args['H']:
