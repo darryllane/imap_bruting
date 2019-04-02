@@ -99,7 +99,7 @@ if __name__ == '__main__':
 	random.shuffle(user_list)
 	random.shuffle(pass_list)
 	
-	print('Attempting IMAP logins:\n')
+	print('\nAttempting IMAP logins:\n')
 	seen = []
 	host_list = host_connect(args)
 	for passw in pass_list:
