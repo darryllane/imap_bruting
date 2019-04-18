@@ -10,29 +10,7 @@ import sys
 import time
 
 
-# Create parser
-parser = argparse.ArgumentParser(prog='imap_brute', description='IMAP bruting', add_help=False)
 
-host_group = parser.add_mutually_exclusive_group(required=True)
-host_group.add_argument('-h', help='host')
-host_group.add_argument('-H', help='file with hosts')
-
-
-user_group = parser.add_mutually_exclusive_group(required=True)
-user_group.add_argument('-user', help='username')
-user_group.add_argument('-U', help='file with usernames')
-
-password_group = parser.add_mutually_exclusive_group(required=True)
-password_group.add_argument('-pass', help='password')
-password_group.add_argument('-P', help='file with passwords')
-
-parser.add_argument('-tls', help='port', required=False, action='store_true')
-parser.add_argument('-p', help='port', required=False)
-parser.add_argument('--help', '-help', help='help menu', required=False, action='store_true')
-parser.add_argument('-v', help='version', required=False, action='store_true')
-parser.add_argument('-V', help='verbose', required=False, action='store_true')
-
-args = vars(parser.parse_args())
 
 def get_file(filename):
 	
@@ -82,8 +60,37 @@ def list_boxes(conn):
 
 
 if __name__ == '__main__':
+	__version__ = 0.1
 	
+	# Create parser
+	parser = argparse.ArgumentParser(prog='imap_brute', description='IMAP bruting', add_help=False)
+	
+	host_group = parser.add_mutually_exclusive_group(required=True)
+	host_group.add_argument('-h', help='host')
+	host_group.add_argument('-H', help='file with hosts')
+	
+	
+	user_group = parser.add_mutually_exclusive_group(required=True)
+	user_group.add_argument('-user', help='username')
+	user_group.add_argument('-U', help='file with usernames')
+	
+	password_group = parser.add_mutually_exclusive_group(required=True)
+	password_group.add_argument('-pass', help='password')
+	password_group.add_argument('-P', help='file with passwords')
+	
+	parser.add_argument('-tls', help='port', required=False, action='store_true')
+	parser.add_argument('-p', help='port', required=False)
+	parser.add_argument('--help', '-help', help='help menu', required=False, action='store_true')
+	parser.add_argument('-v', help='version', required=False, action='store_true')
+	parser.add_argument('-V', help='verbose', required=False, action='store_true')
+	
+	args = vars(parser.parse_args())
 
+	
+	if args['V']:
+		print('version: {}'.format(__version__))
+		sys.exit()
+		
 	if args['P']:
 		pass_list = get_file(args['P'])
 	elif args['pass']:
