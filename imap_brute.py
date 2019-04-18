@@ -83,17 +83,16 @@ def list_boxes(conn):
 
 if __name__ == '__main__':
 	
-	user_list = []
-	pass_list = []
+
 	if args['P']:
 		pass_list = get_file(args['P'])
 	elif args['pass']:
-		pass_list.append(args['pass'])
+		pass_list = list([args['pass']])
 		
 	if args['U']:
 		user_list = get_file(args['U'])
 	elif args['user']:
-		user_list.append(args['user'])		
+		user_list = list([args['U']])	
 	
 	
 	random.shuffle(user_list)
@@ -128,8 +127,3 @@ if __name__ == '__main__':
 						continue
 					except Exception:
 						print(traceback.print_exc())
-				
-	
-	
-	
-
